@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import UseMemoComponent from './UseMemoComponent';
-import ReactMemoComponent from './ReactMemoComponent';
+import UseMemoComponent from './UseMemo';
+import ReactMemoComponent from './ReactMemo';
 import './styles/App.css';
 
 const App = () => {
