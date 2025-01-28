@@ -1,58 +1,32 @@
-import React, { useState, useMemo } from 'react';
-import UseMemoComponent from './UseMemo';
-import ReactMemoComponent from './ReactMemo';
-import './styles/App.css';
+import React, { useState } from "react";
+import UseMemo from "./UseMemo";
+import ReactMemo from "./ReactMemo";
 
-const App = () => {
+const MemoPage = () => {
   const [tasks, setTasks] = useState([]);
-  const [counter, setCounter] = useState(0);
-  const [inputValue, setInputValue] = useState('');
 
-  const addTask = () => {
-    setTasks([...tasks, 'New todo']);
+  const onAdd = () => {
+    setTasks((prev) => [...prev, "New Todo"]);
   };
-
-  const incrementCounter = () => {
-    setCounter(counter + 1);
-  };
-
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const addCustomTask = () => {
-    if (inputValue.trim().length > 5) {
-      setTasks([...tasks, inputValue]);
-      setInputValue('');
-    }
-  };
-
-  const memoizedTasks = useMemo(() => tasks, [tasks]);
-
   return (
-    <div className="App">
-      <h1>Task Manager</h1>
-      <button onClick={addTask}>Add todo</button>
-      <button onClick={incrementCounter}>Increment</button>
-      <div>Counter: {counter}</div>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder="Add custom task"
-      />
-      <button onClick={addCustomTask}>Submit</button>
+    <div id="main">
+      <h1>React.useMemo</h1>
+      <h2>My todos</h2>
       <ul>
-        {memoizedTasks.map((task, index) => (
-          <li key={index}>{task}</li>
+        {tasks.map((i, index) => (
+          <li key={index}>{i}</li>
         ))}
       </ul>
-      <UseMemoComponent tasks={memoizedTasks} />
-      <ReactMemoComponent tasks={memoizedTasks} />
+
+      <button onClick={onAdd}>Add Todo</button>
+
+      <hr />
+      <UseMemo />
+      <hr />
+      <hr />
+      <ReactMemo />
     </div>
   );
 };
 
-export default App;
-
-
+export default MemoPage;
